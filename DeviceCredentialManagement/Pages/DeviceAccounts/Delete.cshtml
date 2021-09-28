@@ -1,0 +1,32 @@
+﻿@page
+@model DeviceCredentialManagement.Pages.DeviceAccounts.DeleteModel
+@{
+    ViewData["Title"] = "Delete Account Credential";
+    ViewData["ShowButtons"] = false;
+}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>AccountId</th>
+                <th>AccountName</th>
+                <th>AccountType</th>
+                <th>ReferenceNo</th>
+                <th>Username</th>
+                <th>Username</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <partial name="_DisplayCandidAccountPartial" model="Model.DeviceAccount" view-data="ViewData" />
+        </tbody>
+    </table>
+    <div class="alert alert-danger">
+        <h6>Are you sure want to delete this credential details for this account - @Model.DeviceAccount.AccountName - Reference Number (@Model.DeviceAccount.AccountReferenceNumber)  ?</h6>
+        <form method="post">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-danger">Yes</button>
+                <a asp-page="/DeviceAccounts/Index" class="btn btn-primary">No</a>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,69 @@
+﻿@page  
+
+
+@model DeviceCredentialManagement.Pages.DeviceAccounts.IndexModel
+@{
+    ViewData["Title"] = "Device Account Credentials List";
+    ViewData["ShowButtons"] = true;
+}
+
+<h1>
+    Device Accounts List
+</h1>
+
+<form method="get">
+    <div class="input-group">
+        <input class="form-control" asp-for="SearchTerm">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>AccountId</th>
+            <th>AccountName</th>
+            <th>AccountType</th>
+            <th>ReferenceNo</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var eachAccountDetails in Model.DeviceAccountCredentials)
+        {
+            <partial name="_DisplayCandidAccountPartial" model="eachAccountDetails" view-data="ViewData" />
+            @*<tr>
+                <td>@eachAccountDetails.Id</td>
+                <td>@eachAccountDetails.AccountName</td>
+                <td>@eachAccountDetails.AccountFor</td>
+                <td>@eachAccountDetails.AccountReferenceNumber</td>
+                <td>@eachAccountDetails.Username</td>
+                <td>@eachAccountDetails.Username</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-page="/DeviceAccounts/Edit" asp-route-id="@eachAccountDetails.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-page="/DeviceAccounts/Delete" asp-route-id="@eachAccountDetails.Id">Delete</a>
+                    <a class="btn btn-info btn-sm" asp-page="/DeviceAccounts/Download" asp-route-id="@eachAccountDetails.Id" asp-route-name="@eachAccountDetails.AccountName">Download</a>
+                </td>
+
+            </tr>*@
+        }
+    </tbody>
+</table>
+
+<hr />
+
+
+<nav aria-label="...">
+    <ul class="pagination pagination-sm justify-content-center">
+        @for (var i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                <a asp-page="/DeviceAccounts/Index" asp-route-CurrentPage="@i" class="page-link">@i</a>
+            </li>
+        }
+    </ul>
+</nav>

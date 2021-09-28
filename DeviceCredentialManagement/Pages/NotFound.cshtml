@@ -1,0 +1,36 @@
+﻿@page
+@model DeviceCredentialManagement.Pages.NotFoundModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!
+                </h1>
+                <h2>
+                    404 Not Found
+                </h2>
+                <div class="error-details">
+                    Sorry, an error has occured, Requested page not found!
+                </div>
+                @if (TempData["message"] != null)
+                {
+                    <div class="col-sm-8">
+                        <div class="alert alert-primary">
+                            @TempData["message"]
+                        </div>
+                    </div>
+                }
+                <div class="error-actions">
+                    <a class="btn btn-primary btn-s" asp-page="/DeviceAccounts/Index">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Take Me Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

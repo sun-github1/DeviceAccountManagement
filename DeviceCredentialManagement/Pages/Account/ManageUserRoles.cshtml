@@ -1,0 +1,31 @@
+﻿@page
+@model DeviceCredentialManagement.Pages.Account.ManageUserRolesModel
+@{
+}
+<form method="post">
+    <div class="card">
+        <div class="card-header">
+            <h2>Manage User Roles for @Model.UserName</h2>
+        </div>
+        <div class="card-body">
+            @for (int i = 0; i < Model.ListUserRoles.Count; i++)
+            {
+                <div class="form-check m-1">
+                    <input type="hidden" asp-for="@Model.ListUserRoles[i].RoleId" />
+                    <input type="hidden" asp-for="@Model.ListUserRoles[i].RoleName" />
+                    <input asp-for="@Model.ListUserRoles[i].IsSelected" class="form-check-input" />
+                    <label class="form-check-label" asp-for="@Model.ListUserRoles[i].IsSelected">
+                        @Model.ListUserRoles[i].RoleName
+                    </label>
+                </div>
+            }
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+        <div class="card-footer">
+            <input type="submit" value="Update" class="btn btn-primary"
+                   style="width:auto" />
+            <a asp-page="EditUser" asp-route-id="@Model.UserId"
+               class="btn btn-primary" style="width:auto">Cancel</a>
+        </div>
+    </div>
+</form>

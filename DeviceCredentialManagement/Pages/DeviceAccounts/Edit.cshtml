@@ -1,0 +1,97 @@
+﻿@page
+@model DeviceCredentialManagement.Pages.DeviceAccounts.EditModel
+@{
+    ViewData["Title"] = "Edit Account Credential";
+    var pageHeader = Model.DeviceAccount!=null && Model.DeviceAccount.Id > 0 ? "Edit Account Credential" : "Create Account Credential";
+}
+<h1>@pageHeader</h1>
+<hr />
+
+
+<form method="post" class="mt-3" asp-page-handler="OnPost">
+
+    @*Use hidden input elements to store employee id which
+        we need when we submit the form*@
+    <input hidden asp-for="DeviceAccount.Id" />
+
+    @*asp-for tag helper takes care of displaying the existing
+        data in the respective input elements*@
+    <div class="form-group row">
+        <label asp-for="DeviceAccount.AccountName" class="col-sm-2 col-form-label">
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="DeviceAccount.AccountName" class="form-control" placeholder="AccountorSiteName">
+            <span asp-validation-for="DeviceAccount.AccountName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="DeviceAccount.AccountFor" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select asp-for="DeviceAccount.AccountFor" class="custom-select mr-sm-2"
+                    asp-items="Html.GetEnumSelectList<AccountType>()">
+                <option value="">Please Select</option>
+            </select>
+            <span asp-validation-for="DeviceAccount.AccountFor" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="DeviceAccount.AccountReferenceNumber" class="col-sm-2 col-form-label">
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="DeviceAccount.AccountReferenceNumber" class="form-control" placeholder="ReferenceNumber">
+            <span asp-validation-for="DeviceAccount.AccountReferenceNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="DeviceAccount.Username" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="DeviceAccount.Username" class="form-control" placeholder="Username">
+            <span asp-validation-for="DeviceAccount.Username" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="DeviceAccount.Password" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input asp-for="DeviceAccount.Password" class="form-control" placeholder="Password" value="@Model.GeneratedPassword">
+                <div class="input-group-append">
+                    <input class="btn btn-outline-secondary bg-light" value="Generate Password" type="submit" asp-page-handler="GeneratePassword" />
+                </div>
+            </div>
+            <span asp-validation-for="DeviceAccount.Password" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a asp-page="/DeviceAccounts/Index" class="btn btn-primary">Cancel</a>
+
+            </div>
+        </div>
+    </div>
+</form>
+<br />
+<br />
+<div class="col text-center">
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-success">
+            @Model.Message<a asp-page="/DeviceAccounts/Index" class="badge badge-info">Home</a>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+<div class="alert alert-danger">
+    @Model.ErrorMessage
+    
+</div>
+    }
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

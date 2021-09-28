@@ -1,0 +1,56 @@
+﻿@page
+@model DeviceCredentialManagement.Pages.DeviceAccounts.DownloadModel
+@{
+    ViewData["Title"] = "Download Account Credential";
+    ViewData["ShowButtons"] = false;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>AccountId</th>
+            <th>AccountName</th>
+            <th>AccountType</th>
+            <th>ReferenceNo</th>
+            <th>Username</th>
+            <th>Username</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="_DisplayCandidAccountPartial" model="Model.DeviceAccount" view-data="ViewData" />
+    </tbody>
+</table>
+
+<div class="alert alert-primary">
+
+    <h6>Do you want to download credential details for this account - @Model.DeviceAccount.AccountName - for Reference Number (@Model.DeviceAccount.AccountReferenceNumber)  ?</h6>
+
+    <div class="col text-center">
+        <form method="post">
+            <input asp-for="@Model.DeviceAccount.AccountName" type="hidden" />
+            <input asp-for="@Model.DeviceAccount.Id" type="hidden" />
+
+            <button type="submit" class="btn btn-danger">Download only this RefNo</button>
+            <button type="submit" class="btn btn-info" asp-page-handler="DownloadAllFiles">Download All for this account</button>
+            <a asp-page="/DeviceAccounts/Index" class="btn btn-primary">Cancel</a>
+        </form>
+        @*<form method="post" asp-page-handler="DownloadAllFiles">
+
+
+            </form>*@
+        @*<input class="btn btn-secondary" value="Download only this file" type="submit" asp-page-handler="DownloadThisFile" />
+            <input class="btn btn-secondary" value="Download All for this account" type="submit" asp-page-handler="DownloadAllFiles" />*@
+
+
+    </div>
+
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger">
+            @Model.ErrorMessage
+
+        </div>
+    }
+</div>

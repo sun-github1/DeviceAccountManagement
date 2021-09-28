@@ -1,0 +1,71 @@
+﻿@page
+@model DeviceCredentialManagement.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Login User";
+}
+
+@*<style>
+
+    body {
+        background-color: #87CEFA;
+    }
+
+    .login-form {
+        width: 400px;
+        height:500px;
+        margin: 50px auto;
+        /*font-size: 15px;*/
+    }
+
+        .login-form form {
+            margin-bottom: 30px;
+            background: #f7f7f7;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+        }
+
+        .login-form h2 {
+            margin: 0 0 15px;
+        }
+
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+
+</style>*@
+
+
+<div class="container">
+    <h1>User Login</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div asp-validation-summary="All" class="bg-warning text-dark"></div>
+                <div class="form-group">
+                    <label asp-for="@Model.LoginUser.Email"></label>
+                    <input asp-for="@Model.LoginUser.Email" class="form-control" />
+                    <span asp-validation-for="@Model.LoginUser.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.LoginUser.Password"></label>
+                    <input asp-for="@Model.LoginUser.Password" class="form-control" />
+                    <span asp-validation-for="@Model.LoginUser.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="@Model.LoginUser.RememberMe">
+                            <input asp-for="@Model.LoginUser.RememberMe" />
+                            @Html.DisplayNameFor(m => m.LoginUser.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width:100px">Login</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+ 
