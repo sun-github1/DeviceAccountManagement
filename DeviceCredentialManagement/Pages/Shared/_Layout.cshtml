@@ -64,18 +64,30 @@
                     }
                     @if (signInManager.IsSignedIn(User))
                     {
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/DeviceAccounts/Index">Lists</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/DeviceAccounts/Edit">Add</a>
-                            </li>
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-page="/DeviceAccounts/Index">Lists</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        @*<li class="nav-item">*@
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Generate Accounts
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-area="" asp-page="/DeviceAccounts/Edit">Add Single</a>
+                            <a class="dropdown-item" asp-area="" asp-page="/DeviceAccounts/Batch">Add In Batch for Camera</a>
+                        </div>
+                        @*</li>*@
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-page="/DeviceAccounts/About">About</a>
+                    </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/DeviceAccounts/About">About</a>
-                            </li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-page="/DeviceAccounts/About">About</a>
+                    </li>
+                </ul>
                     }
 
                 </div>
