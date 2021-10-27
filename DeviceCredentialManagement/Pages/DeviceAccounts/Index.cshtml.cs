@@ -36,17 +36,39 @@ namespace DeviceCredentialManagement.Pages.DeviceAccounts
 
             PageSize = _configuration.GetValue<int>("PageSize");
         }
-        public void OnGet()
+        //public void OnGet()
+        //{
+        //    if (string.IsNullOrEmpty(SearchTerm))
+        //    {
+        //        Count= deviceAccountRepository.GetTotalAccountCredentials(string.Empty);
+        //        DeviceAccountCredentials = deviceAccountRepository.GetAccountCredentials(CurrentPage, PageSize,string.Empty);
+        //    }
+        //    else
+        //    {
+        //        Count = deviceAccountRepository.GetTotalAccountCredentials(SearchTerm);
+        //        DeviceAccountCredentials = deviceAccountRepository.GetAccountCredentials(CurrentPage, PageSize, SearchTerm);
+        //    }
+        //}
+
+
+
+        public void OnGet(string searchstring)
         {
-            if (string.IsNullOrEmpty(SearchTerm))
+            if (searchstring == null)
             {
-                Count= deviceAccountRepository.GetTotalAccountCredentials(string.Empty);
-                DeviceAccountCredentials = deviceAccountRepository.GetAccountCredentials(CurrentPage, PageSize,string.Empty);
+                searchstring = SearchTerm;
+            }
+
+            SearchTerm = searchstring;
+            if (string.IsNullOrEmpty(searchstring))
+            {
+                Count = deviceAccountRepository.GetTotalAccountCredentials(string.Empty);
+                DeviceAccountCredentials = deviceAccountRepository.GetAccountCredentials(CurrentPage, PageSize, string.Empty);
             }
             else
             {
-                Count = deviceAccountRepository.GetTotalAccountCredentials(SearchTerm);
-                DeviceAccountCredentials = deviceAccountRepository.GetAccountCredentials(CurrentPage, PageSize, SearchTerm);
+                Count = deviceAccountRepository.GetTotalAccountCredentials(searchstring);
+                DeviceAccountCredentials = deviceAccountRepository.GetAccountCredentials(CurrentPage, PageSize, searchstring);
             }
         }
 

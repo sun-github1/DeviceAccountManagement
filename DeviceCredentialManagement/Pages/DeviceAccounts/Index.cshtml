@@ -1,4 +1,5 @@
-﻿@page  
+﻿@page
+
 
 
 @model DeviceCredentialManagement.Pages.DeviceAccounts.IndexModel
@@ -11,11 +12,12 @@
     Device Accounts List
 </h1>
 
-<form method="get">
+<form method="get" asp-page="Index">
     <div class="input-group">
-        <input class="form-control" asp-for="SearchTerm">
+        <input class="form-control" name="searchstring" value="@Model.SearchTerm">
         <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">Search</button>
+            <input class="btn btn-primary" type="submit" value="Search" />
+            @*<button class="btn btn-primary" type="submit">Search</button>*@
         </div>
     </div>
 </form>
@@ -37,19 +39,19 @@
         {
             <partial name="_DisplayCandidAccountPartial" model="eachAccountDetails" view-data="ViewData" />
             @*<tr>
-                <td>@eachAccountDetails.Id</td>
-                <td>@eachAccountDetails.AccountName</td>
-                <td>@eachAccountDetails.AccountFor</td>
-                <td>@eachAccountDetails.AccountReferenceNumber</td>
-                <td>@eachAccountDetails.Username</td>
-                <td>@eachAccountDetails.Username</td>
-                <td>
-                    <a class="btn btn-primary btn-sm" asp-page="/DeviceAccounts/Edit" asp-route-id="@eachAccountDetails.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-page="/DeviceAccounts/Delete" asp-route-id="@eachAccountDetails.Id">Delete</a>
-                    <a class="btn btn-info btn-sm" asp-page="/DeviceAccounts/Download" asp-route-id="@eachAccountDetails.Id" asp-route-name="@eachAccountDetails.AccountName">Download</a>
-                </td>
+                    <td>@eachAccountDetails.Id</td>
+                    <td>@eachAccountDetails.AccountName</td>
+                    <td>@eachAccountDetails.AccountFor</td>
+                    <td>@eachAccountDetails.AccountReferenceNumber</td>
+                    <td>@eachAccountDetails.Username</td>
+                    <td>@eachAccountDetails.Username</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" asp-page="/DeviceAccounts/Edit" asp-route-id="@eachAccountDetails.Id">Edit</a>
+                        <a class="btn btn-danger btn-sm" asp-page="/DeviceAccounts/Delete" asp-route-id="@eachAccountDetails.Id">Delete</a>
+                        <a class="btn btn-info btn-sm" asp-page="/DeviceAccounts/Download" asp-route-id="@eachAccountDetails.Id" asp-route-name="@eachAccountDetails.AccountName">Download</a>
+                    </td>
 
-            </tr>*@
+                </tr>*@
         }
     </tbody>
 </table>
@@ -62,7 +64,7 @@
         @for (var i = 1; i <= Model.TotalPages; i++)
         {
             <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-                <a asp-page="/DeviceAccounts/Index" asp-route-CurrentPage="@i" class="page-link">@i</a>
+                <a asp-page="/DeviceAccounts/Index" asp-route-CurrentPage="@i" asp-route-SearchTerm="@Model.SearchTerm" class="page-link">@i</a>
             </li>
         }
     </ul>

@@ -40,7 +40,7 @@ namespace DeviceCredentialManagement.Pages.DeviceAccounts
             }
             else
             {
-                _logger.LogInformation("Add page visited for account id: " + id);
+                _logger.LogInformation("Add page visited");
                 DeviceAccount = new DeviceAccountCredential();
             }
             if (DeviceAccount == null)
