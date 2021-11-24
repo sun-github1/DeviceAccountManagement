@@ -1,5 +1,5 @@
 # DeviceAccountManagement
-This is a small application to create/update/manage/lookup credentials for different devices.
+This is a small application to create/update/manage/lookup credentials for different devices using Razor Pages.
 
 
 It is a standard web application made with .Net core razor pages completed with Identity authentcation.
