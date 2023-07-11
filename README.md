@@ -8,3 +8,7 @@ It is a standard web application made with .Net core razor pages completed with 
       user (do not have access on user management, only CRUD operation permission for data)
       viewer (can view and download only)
 The data is stored in a SQL server database. Done with EntityFramework
+
+
+For local use:
+Data Source=.;Initial Catalog=TestAccountDB;Persist Security Info=True;Integrated Security=True;Connection Timeout=0;Connection Lifetime=0;
